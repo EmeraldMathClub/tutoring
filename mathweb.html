@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emerald High School Math Club 2024-25</title>
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    <style>
+        /* Modern CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Variables for consistent theming */
+        :root {
+            --primary: #2dd4bf;
+            --primary-dark: #0d9488;
+            --secondary: #0f766e;
+            --background: #ffffff;
+            --text: #1f2937;
+            --text-light: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary: #0d9488;
+            --primary-dark: #134e4a;
+            --secondary: #042f2e;
+            --background: #0f172a;
+            --text: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--background);
+            transition: var(--transition);
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--background);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        nav button {
+            background-color: transparent;
+            color: var(--text);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 0.75rem 1.5rem;
+            margin: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        nav button:hover {
+            background-color: var(--primary);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--background);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        section h2 {
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        /* Form Styles */
+        form {
+            background-color: rgba(var(--primary-dark), 0.05);
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin-top: 1.5rem;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0 2rem;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: 1.2rem;
+            height: 1.2rem;
+            accent-color: var(--primary);
+        }
+
+        button[type="submit"] {
+            background-color: var(--primary);
+            color: var(--text-light);
+            border: none;
+            border-radius: var(--radius);
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            max-width: 200px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background-color: var(--background);
+            padding: 0.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .theme-toggle label {
+            width: 60px;
+            height: 30px;
+            background-color: var(--primary);
+            border-radius: 30px;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .theme-toggle label::after {
+            content: '🌞';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background-color: var(--text-light);
+            border-radius: 50%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .theme-toggle input:checked + label::after {
+            transform: translateX(30px);
+            content: '🌙';
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-credit {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav button {
+                flex: 1 1 calc(50% - 1rem);
+                min-width: 150px;
+            }
+
+            section {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            #finals img {
+                border-radius: var(--radius);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" alt="Emerald High School Math Club Logo">
+        <h1>Emerald High School Math Club</h1>
+        <p style="color: var(--text-light)">2024-25 Academic Year</p>
+    </header>
+
+    <div class="theme-toggle">
+        <input type="checkbox" id="theme-toggle" hidden>
+        <label for="theme-toggle"></label>
+    </div>
+
+    <nav>
+        <button onclick="scrollToSection('home')">Home</button>
+        <button onclick="scrollToSection('sign-up')">Sign-Up</button>
+        <button onclick="scrollToSection('finals')">Finals</button>
+        <button onclick="scrollToSection('tutors')">Tutors</button>
+    </nav>
+
+    <section id="home">
+        <h2>Welcome</h2>
+        <p>Starting with the 24-25 school year, the EHS Math Club is proud to have a peer tutoring program at Emerald High School. The tutors are certified, kind, and incredibly eager to help students learn.</p>
+        <div style="background: var(--primary-dark); color: var(--text-light); padding: 1.5rem; border-radius: var(--radius); margin: 1.5rem 0;">
+            <h3 style="margin-bottom: 1rem">📍 Location & Schedule</h3>
+            <p><strong>Location:</strong> Second floor of the library</p>
+            <p><strong>Timings:</strong></p>
+            <ul style="list-style-position: inside; margin-top: 0.5rem;">
+                <li>Monday: 12:44 PM - 1:14 PM</li>
+                <li>Wednesday: 12:06 PM - 12:36 PM</li>
+                <li>Friday: 12:44 PM - 1:14 PM</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="sign-up">
+        <h2>Sign-Up Form</h2>
+        <form id="tutorForm" onsubmit="submitViaGmail(event)">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--primary); border-radius: var(--radius);">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--primary); border-radius: var(--radius);">
+
+            <label for="subjects">Subjects you would like to be tutored in (select all that apply):</label>
+            <div class="checkbox-group" id="subjects">
+                <label><input type="checkbox" name="subjects" value="Algebra"> Algebra I</label>
+                <label><input type="checkbox" name="subjects" value="Geometry"> Geometry</label>
+                <label><input type="checkbox" name="subjects" value="Algebra II">Algebra II</label>
+                <label><input type="checkbox" name="subjects" value="Calculus"> Advanced Algebra II</label>
+                <label><input type="checkbox" name="subjects" value="Statistics">Precalculus</label>
+                <label><input type="checkbox" name="subjects" value="Pre-Calculus"> AP Precalculus</label>
+                <label><input type="checkbox" name="subjects" value="Other"> AP Calculus AB</label>
+            </div>
+
+            <label for="timings">Preferred Timings (select all that apply):</label>
+            <div class="checkbox-group" id="timings">
+                <label><input type="checkbox" name="timings" value="Monday"> Monday: 12:44 PM - 1:14 PM</label>
+                <label><input type="checkbox" name="timings" value="Wednesday"> Wednesday: 12:06 PM - 12:36 PM</label>
+                <label><input type="checkbox" name="timings" value="Friday"> Friday: 12:44 PM - 1:14 PM</label>
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </section>
+
+
+    <section id="finals">
+        <h2>Finals Page</h2>
+        <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: var(--text-light); padding: 2rem; border-radius: var(--radius); text-align: center;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem">🍪Cookies, Cocoa, and Cramming! 📚</h3>
+            <p>Join us on the second floor of the E building (Library) for a finals study session! Other teachers and students will be there to help. We will be there for all three days (10-12th of Dec)</p>
+            <img src="CookiesCramming.png" alt="Cookies, Cocoa, and Cramming Flyer" style="max-width: 100%; margin-top: 1rem; border-radius: var(--radius);">
+        </div>
+    </section>
+
+    <section id="tutors">
+        <h2>Tutors</h2>
+        <div style="margin-bottom: 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <!-- First Tutor -->
+                <div style="background: var(--background); padding: 1.5rem; border-radius: var(--radius); border: 2px solid var(--primary); box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">Tutor1</h3>
+                    <p><strong>Grade:</strong> 12th</p>
+                    <p><strong>Subjects:</strong> Calculus AB/BC, Pre-Calculus</p>
+                    <p><strong>Available:</strong> Monday, Wednesday</p>
+                    <p style="margin-top: 1rem; font-style: italic;">"I love helping students understand complex math concepts by breaking them down into simpler parts. Math doesn't have to be scary!"</p>
+                </div>
+
+                <!-- Second Tutor -->
+                <div style="background: var(--background); padding: 1.5rem; border-radius: var(--radius); border: 2px solid var(--primary); box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 1rem; border-bottom: 2px solid var(--primary); padding-bottom: 0.5rem;">Tutor2</h3>
+                    <p><strong>Grade:</strong> 11th</p>
+                    <p><strong>Subjects:</strong> Algebra II, Geometry, Statistics</p>
+                    <p><strong>Available:</strong> Monday, Friday</p>
+                    <p style="margin-top: 1rem; font-style: italic;">"Mathematics is like a puzzle - once you find the right approach, everything clicks into place. I'm here to help you find that approach!"</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: rgba(var(--primary-dark), 0.05); padding: 2rem; border-radius: var(--radius); border: 2px solid var(--primary); margin-top: 2rem;">
+            <h3 style="color: var(--primary-dark); margin-bottom: 1rem">Application Process</h3>
+            <ol style="list-style-position: inside;">
+                <li>Join the Discord math server <a href="https://discord.gg/TBZ6FtY3MV">here</a> </li>
+                <li>Complete the verification process</li>
+                <li>Access the Google Doc for application details</li>
+                <li>Submit your application within two weeks of verification</li>
+            </ol>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Emerald High School Math Club</p>
+        <p class="footer-credit">Website by Krishna Nidamarthi</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling to sections
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Function to submit form via Gmail
+        function submitViaGmail(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Get selected subjects
+            const subjectCheckboxes = document.querySelectorAll('input[name="subjects"]:checked');
+            const subjects = Array.from(subjectCheckboxes).map(cb => cb.value).join(', ');
+            
+            // Get selected timings
+            const timingCheckboxes = document.querySelectorAll('input[name="timings"]:checked');
+            const timings = Array.from(timingCheckboxes).map(cb => cb.value).join(', ');
+            
+            // Compose email body
+            const body = `New Tutor Application:
+            
+Name: ${name}
+Email: ${email}
+Subjects: ${subjects}
+Available Times: ${timings}`;
+
+            // Compose Gmail URL
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=raj5244@mydusd.org&su=Math Club Tutor Application - ${name}&body=${encodeURIComponent(body)}`;
+            
+            // Open Gmail in new window
+            window.open(gmailUrl);
+        }
+        
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+
+</html>
