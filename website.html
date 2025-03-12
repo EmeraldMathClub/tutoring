@@ -264,7 +264,6 @@
     <nav>
         <button onclick="scrollToSection('home')">Home</button>
         <button onclick="scrollToSection('sign-up')">Sign-Up</button>
-        <button onclick="scrollToSection('finals')">Finals</button>
         <button onclick="scrollToSection('tutors')">Tutors</button>
     </nav>
 
@@ -273,13 +272,8 @@
         <p>Starting with the 24-25 school year, the EHS Math Club is proud to have a peer tutoring program at Emerald High School. The tutors are certified, kind, and incredibly eager to help students learn.</p>
         <div style="background: var(--primary-dark); color: var(--text-light); padding: 1.5rem; border-radius: var(--radius); margin: 1.5rem 0;">
             <h3 style="margin-bottom: 1rem">📍 Location & Schedule</h3>
-            <p><strong>Location:</strong> Second floor of the library</p>
-            <p><strong>Timings:</strong></p>
-            <ul style="list-style-position: inside; margin-top: 0.5rem;">
-                <li>Monday: 12:44 PM - 1:14 PM</li>
-                <li>Wednesday: 12:06 PM - 12:36 PM</li>
-                <li>Friday: 12:44 PM - 1:14 PM</li>
-            </ul>
+            <p><strong>Location:</strong> F-337 (Mrs. Roberts' room)</p>
+            <p><strong>Timings:</strong> Wednesday Access</p>
         </div>
     </section>
 
@@ -289,7 +283,7 @@
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--primary); border-radius: var(--radius);">
             
-            <label for="email">Email:</label>
+            <label for="email">School Email:</label>
             <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--primary); border-radius: var(--radius);">
 
             <label for="subjects">Subjects you would like to be tutored in (select all that apply):</label>
@@ -302,27 +296,10 @@
                 <label><input type="checkbox" name="subjects" value="Pre-Calculus"> AP Precalculus</label>
                 <label><input type="checkbox" name="subjects" value="Other"> AP Calculus AB</label>
             </div>
-
-            <label for="timings">Preferred Timings (select all that apply):</label>
-            <div class="checkbox-group" id="timings">
-                <label><input type="checkbox" name="timings" value="Monday"> Monday: 12:44 PM - 1:14 PM</label>
-                <label><input type="checkbox" name="timings" value="Wednesday"> Wednesday: 12:06 PM - 12:36 PM</label>
-                <label><input type="checkbox" name="timings" value="Friday"> Friday: 12:44 PM - 1:14 PM</label>
-            </div>
-
             <button type="submit">Submit Application</button>
         </form>
     </section>
 
-
-    <section id="finals">
-        <h2>Finals Page</h2>
-        <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: var(--text-light); padding: 2rem; border-radius: var(--radius); text-align: center;">
-            <h3 style="font-size: 1.5rem; margin-bottom: 1rem">🍪Cookies, Cocoa, and Cramming! 📚</h3>
-            <p>Join us on the second floor of the E building (Library) for a finals study session! Other teachers and students will be there to help. We will be there for all three days (10-12th of Dec)</p>
-            <img src="CookiesCramming.png" alt="Cookies, Cocoa, and Cramming Flyer" style="max-width: 100%; margin-top: 1rem; border-radius: var(--radius);">
-        </div>
-    </section>
 
     <section id="tutors">
         <h2>Tutors</h2>
@@ -373,35 +350,29 @@
 
         // Function to submit form via Gmail
         function submitViaGmail(event) {
-            event.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            
-            // Get selected subjects
-            const subjectCheckboxes = document.querySelectorAll('input[name="subjects"]:checked');
-            const subjects = Array.from(subjectCheckboxes).map(cb => cb.value).join(', ');
-            
-            // Get selected timings
-            const timingCheckboxes = document.querySelectorAll('input[name="timings"]:checked');
-            const timings = Array.from(timingCheckboxes).map(cb => cb.value).join(', ');
-            
-            // Compose email body
-            const body = `New Tutor Application:
-            
+    event.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    
+    // Get selected subjects
+    const subjectCheckboxes = document.querySelectorAll('input[name="subjects"]:checked');
+    const subjects = Array.from(subjectCheckboxes).map(cb => cb.value).join(', ');
+    
+    // Compose email body
+    const body = `Tutor Sign Up:
+    
 Name: ${name}
 Email: ${email}
-Subjects: ${subjects}
-Available Times: ${timings}`;
-
-            // Compose Gmail URL
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=raj5244@mydusd.org&su=Math Club Tutor Application - ${name}&body=${encodeURIComponent(body)}`;
-            
-            // Open Gmail in new window
-            window.open(gmailUrl);
-        }
-        
+Subjects: ${subjects}`;
+    
+    // Compose Gmail URL
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=raj5244@mydusd.org&su=Math Club Tutor Application - ${encodeURIComponent(name)}&body=${encodeURIComponent(body)}`;
+    
+    // Open Gmail in a new window or tab
+    window.open(gmailUrl, '_blank');
+}
         // Theme toggle
         const themeToggle = document.getElementById('theme-toggle');
         themeToggle.addEventListener('change', () => {
